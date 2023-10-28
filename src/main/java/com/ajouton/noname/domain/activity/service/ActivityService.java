@@ -12,6 +12,7 @@ import com.ajouton.noname.domain.club.entity.Club;
 import com.ajouton.noname.domain.club.service.ClubService;
 import com.ajouton.noname.domain.exception.CustomException;
 import com.ajouton.noname.domain.exception.ErrorCode;
+import java.net.URI;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -58,12 +59,12 @@ public class ActivityService {
         return result;
     }
 
-    public void postActivity(Long clubId, PostActivityDto postActivityDto) {
+    public void postActivity(Long clubId, PostActivityDto postActivityDto, String imageUri) {
         Club club = clubService.findById(clubId);
         Activity activity = Activity.builder()
             .content(postActivityDto.getContent())
             .club(club)
-            .image("/testUrl")
+            .image(imageUri)
             .build();
         activityRepository.save(activity);
     }

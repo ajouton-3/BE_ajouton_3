@@ -26,6 +26,25 @@ public class AmazonS3Service {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
+    public String uploadFile(MultipartFile image){
+        String imgUrl = new String();
+
+        try{
+            String fileName = createFileName(image);
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentType(image.getContentType());
+            metadata.setContentLength(image.getSize());
+
+            amazonS3Client.putObject(bucket, fileName, image.getInputStream(), metadata);
+
+            imgUrl = amazonS3Client.getUrl(bucket, fileName).toString();
+
+        } catch(IOException e){
+            throw new RuntimeException("이미지 업로드 중 오류가 발생했습니다.");
+        }
+
+        return imgUrl;
+    }
     public List<String> uploadFiles(List<MultipartFile> images){
         List<String> imgUrls = new ArrayList<>();
 
