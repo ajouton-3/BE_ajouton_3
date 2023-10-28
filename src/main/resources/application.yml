@@ -17,7 +17,7 @@ spring:
 cloud:
   aws:
     s3:
-      bucket: gollajo
+      bucket: ajouton3
     credentials:
       access-key: AKIA6EN5HXX5YH5RZLFH
       secret-key: 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
