@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://gollajo-testdb.cgrh78ev6hez.ap-northeast-2.rds.amazonaws.com:3306/ajouton?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: dkwneo19!
+    dbcp:
+      testOnBorrow: true
+      validationQuery: SELECT 1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+cloud:
+  aws:
+    s3:
+      bucket: gollajo
+    credentials:
+      access-key: AKIA6EN5HXX5YH5RZLFH
+      secret-key: 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
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
