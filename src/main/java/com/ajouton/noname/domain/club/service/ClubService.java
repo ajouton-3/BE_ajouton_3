@@ -21,4 +21,10 @@ public class ClubService {
     }
   }
 
+  public void isRecruitClub(Long clubId) {
+    if(!clubRepository.existsByClubIdAndIsRecruit(clubId, 'Y')) {
+      throw new CustomException(ErrorCode.NOT_RECRUIT_SEASON);
+    }
+  }
+
 }
