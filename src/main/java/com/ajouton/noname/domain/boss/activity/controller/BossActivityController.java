@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +54,13 @@ public class BossActivityController {
       @RequestPart("patchActivity") PatchActivityDto patchActivityDto) {
 
     activityService.patchActivity(activityId, patchActivityDto);
+    return ResponseEntity.status(HttpStatus.OK).build();
+  }
+
+  @DeleteMapping("/{activityId}")
+  public ResponseEntity deleteClubActivity(@PathVariable("activityId") int activityId) {
+    activityService.isValidActivity(activityId);
+    activityService.deleteActivity(activityId);
     return ResponseEntity.status(HttpStatus.OK).build();
   }
 }

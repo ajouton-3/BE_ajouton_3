@@ -90,4 +90,10 @@ public class ActivityService {
         activity.setContent(patchActivityDto.getContent());
         activity.setImage("/updateUrl");
     }
+
+    public void deleteActivity(int activityId) {
+        Activity activity = activityRepository.findById(activityId)
+            .orElseThrow(()-> new CustomException(ErrorCode.ACTIVITY_NOT_EXIST));
+        activityRepository.delete(activity);
+    }
 }
