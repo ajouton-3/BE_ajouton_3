@@ -15,7 +15,7 @@ public class NoticeCategory {
 
     @Id
     @Column(name = "notice_category",length = 10)
-    private String clubCategory;
+    private String noticeCategory;
 
 
 
