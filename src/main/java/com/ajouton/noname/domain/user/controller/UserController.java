@@ -88,4 +88,26 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK)
             .body(clubList);
     }
+
+    @PostMapping("/{userId}/clubs/{clubId}/like")
+    public ResponseEntity postUserLikeClub(
+        @PathVariable("userId") Long userId,
+        @PathVariable("clubId") Long clubId) {
+        userService.isValidUser(userId);
+        clubService.isValidClub(clubId);
+
+        userLikeClubService.postUserLikeClub(userId, clubId);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/{userId}/clubs/{clubId}/dislike")
+    public ResponseEntity deleteUserLikeClub(
+        @PathVariable("userId") Long userId,
+        @PathVariable("clubId") Long clubId) {
+        userService.isValidUser(userId);
+        clubService.isValidClub(clubId);
+
+        userLikeClubService.deleteUserLikeClub(userId, clubId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }

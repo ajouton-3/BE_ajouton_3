@@ -1,5 +1,7 @@
 package com.ajouton.noname.domain.user.service;
 
+import com.ajouton.noname.domain.exception.CustomException;
+import com.ajouton.noname.domain.exception.ErrorCode;
 import com.ajouton.noname.domain.user.entity.Member;
 import com.ajouton.noname.domain.user.entity.UserLikeClub;
 import com.ajouton.noname.domain.user.repository.UserLikeClubRepository;
@@ -23,5 +25,25 @@ public class UserLikeClubService {
     List<Long> clubIdList = userLikeClubList.stream().map((club)-> club.getClubId()).collect(
         Collectors.toList());
     return clubIdList;
+  }
+
+  public void postUserLikeClub(Long userId, Long clubId) {
+    if(userLikeClubRepository.existsByUserIdAndClubId(userId, clubId)) {
+      throw new CustomException(ErrorCode.ALREADY_LIKE);
+    }
+    UserLikeClub userLikeClub = new UserLikeClub();
+    userLikeClub.setClubId(clubId);
+    userLikeClub.setUserId(userId);
+    userLikeClubRepository.save(userLikeClub);
+  }
+
+  public void deleteUserLikeClub(Long userId, Long clubId) {
+    if(!userLikeClubRepository.existsByUserIdAndClubId(userId, clubId)) {
+      throw new CustomException(ErrorCode.LIKE_NOT_EXIST);
+    }
+    UserLikeClub userLikeClub = new UserLikeClub();
+    userLikeClub.setClubId(clubId);
+    userLikeClub.setUserId(userId);
+    userLikeClubRepository.delete(userLikeClub);
   }
 }
