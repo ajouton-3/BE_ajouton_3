@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -49,6 +51,20 @@ public class ClubMemberService {
         clubMemberId.setClubId(clubId);
         clubMemberId.setUserId(userId);
         return clubMemberId;
+    }
+
+    public List<Long> findAllClubIdsByUserId(Long userId){
+        log.info("11234");
+        List<ClubMember> clubMembers = clubMemberRepository.findAllByUserId(userId);
+        log.info("2222234");
+        List<Long> clubIds = new ArrayList<>();
+
+        for(ClubMember clubMember:clubMembers){
+            if(clubMember.getIsView()=='Y'){
+                clubIds.add(clubMember.getClubId());
+            }
+        }
+        return clubIds;
     }
 
 }
