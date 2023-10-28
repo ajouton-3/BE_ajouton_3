@@ -1,4 +1,4 @@
-package com.ajouton.noname.domain.member.entity;
+package com.ajouton.noname.domain.user.entity;
 
 import com.ajouton.noname.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
@@ -10,11 +10,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Member extends BaseTimeEntity {
+@Table(name = "USERS")
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name="user_id",nullable = false)
+    private Long userId;
 
     @Column(name="name",nullable = false)
     private String name;
@@ -30,7 +32,7 @@ public class Member extends BaseTimeEntity {
 
 
     @Builder
-    private Member(final String name,
+    private User(final String name,
                    final String phoneNum,
                    final String studentId,
                    final String department){
