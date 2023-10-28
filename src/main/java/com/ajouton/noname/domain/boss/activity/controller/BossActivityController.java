@@ -23,15 +23,6 @@ public class BossActivityController {
   private final ActivityService activityService;
   private final ClubService clubService;
 
-//  @PostMapping("/category")
-//  public ResponseEntity postActivityCategory(
-//      @RequestParam("clubId") Long clubId,
-//      @RequestBody PostActivityDto postActivityCategory) {
-//    clubService.isValidClub(clubId);
-//    activityService.postActivityCategory(clubId, postActivityCategory);
-//    return ResponseEntity.status(HttpStatus.CREATED).build();
-//  }
-
   @PostMapping("")
   public ResponseEntity postClubActivity(
       @RequestPart("image") MultipartFile image,
