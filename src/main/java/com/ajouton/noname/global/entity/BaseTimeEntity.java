@@ -1,5 +1,6 @@
 package com.ajouton.noname.global.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -15,8 +16,10 @@ import java.time.LocalDateTime;
 public class BaseTimeEntity {
 
     @CreatedDate
+    @Column(name="created_at",nullable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private LocalDateTime modifiedAt;
+    @Column(name="created_at",nullable = false)
+    private LocalDateTime updatedAt;
 }
