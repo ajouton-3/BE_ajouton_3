@@ -2,6 +2,7 @@ package com.ajouton.noname.domain.user.service;
 
 import com.ajouton.noname.domain.exception.CustomException;
 import com.ajouton.noname.domain.exception.ErrorCode;
+import com.ajouton.noname.domain.user.dto.SignInDto;
 import com.ajouton.noname.domain.user.dto.SignUpDto;
 import com.ajouton.noname.domain.user.entity.User;
 import com.ajouton.noname.domain.user.dto.CreateUserRequest;
@@ -32,5 +33,13 @@ public class UserService {
         user.setPassword(signUpDto.getPassword());
 
         userRepository.save(user);
+    }
+
+    public void signIn(SignInDto signInDto) {
+        User user = userRepository.findByStudentId(signInDto.getStudentId())
+            .orElseThrow(()-> new CustomException(ErrorCode.USER_NOT_EXIST));
+        if(!user.getPassword().equals(signInDto.getPassword())) {
+            throw new CustomException(ErrorCode.SIGN_IN_FAILED);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.ajouton.noname.domain.user.controller;
 
 
+import com.ajouton.noname.domain.user.dto.SignInDto;
 import com.ajouton.noname.domain.user.dto.SignUpDto;
 import com.ajouton.noname.domain.user.entity.User;
 import com.ajouton.noname.domain.user.dto.CreateUserRequest;
@@ -23,5 +24,11 @@ public class UserController {
     public ResponseEntity signUp(@RequestBody SignUpDto signUpDto) {
         userService.signUp(signUpDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/sign-in")
+    public ResponseEntity signIn(@RequestBody SignInDto signInDto) {
+        userService.signIn(signInDto);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
