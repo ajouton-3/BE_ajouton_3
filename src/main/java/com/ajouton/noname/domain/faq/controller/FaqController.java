@@ -27,7 +27,7 @@ public class FaqController {
 
     //FAQ 리스트 보내주기
     @GetMapping("/{clubId}")
-    public ResponseEntity<List<FaqListResponse>> showFaqList(@PathVariable int clubId){
+    public ResponseEntity<List<FaqListResponse>> showFaqList(@PathVariable Long clubId){
 
         Club club = clubService.findById(clubId);
 

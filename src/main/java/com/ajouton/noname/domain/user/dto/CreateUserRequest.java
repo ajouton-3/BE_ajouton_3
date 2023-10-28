@@ -1,9 +1,9 @@
-package com.ajouton.noname.domain.member.dto;
+package com.ajouton.noname.domain.user.dto;
 
 import lombok.Builder;
 
 @Builder
-public record CreateMemberRequest (
+public record CreateUserRequest(
         String name,
         String phoneNum,
         String studentId,

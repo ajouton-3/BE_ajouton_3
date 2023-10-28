@@ -31,10 +31,10 @@ public class ActivityController {
     }
     //활동내역 리스트 보내주기
     @GetMapping("/all/{clubId}")
-    public ResponseEntity<List<ActivityListResponse>> showActivityList(@PathVariable String clubId){
-        log.info("1");
-        Club club = clubService.findById(Integer.parseInt(clubId));
-        log.info("2");
+    public ResponseEntity<List<ActivityListResponse>> showActivityList(@PathVariable Long clubId){
+
+        Club club = clubService.findById(clubId);
+
         List<ActivityListResponse> activityListResponses = activityService.showActivityList(club);
 
         return new ResponseEntity<>(activityListResponses, HttpStatus.OK);

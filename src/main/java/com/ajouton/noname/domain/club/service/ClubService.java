@@ -8,19 +8,22 @@ import com.ajouton.noname.domain.club.repository.ClubCategoryRepository;
 import com.ajouton.noname.domain.club.repository.ClubRepository;
 import com.ajouton.noname.domain.exception.CustomException;
 import com.ajouton.noname.domain.exception.ErrorCode;
+import com.ajouton.noname.domain.club.dto.ClubDto;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional
 @Service
 @Slf4j
 public class ClubService {
+
 
     private final ClubRepository clubRepository;
     private final ClubCategoryRepository clubCategoryRepository;
@@ -82,10 +85,32 @@ public class ClubService {
 
 
 
-    public Club findById(int clubId){
+    public Club findById(Long clubId){
         log.info("serve");
         Club club = clubRepository.findById(clubId).orElseThrow(() -> new CustomException(ErrorCode.ERROR_1));
         return club;
     }
+
+
+
+  public void isValidClub(Long clubId) {
+    if(!clubRepository.existsById(clubId)) {
+      throw new CustomException(ErrorCode.CLUB_NOT_EXIST);
+    }
+  }
+
+  public void isRecruitClub(Long clubId) {
+    if(!clubRepository.existsByClubIdAndIsRecruit(clubId, 'Y')) {
+      throw new CustomException(ErrorCode.NOT_RECRUIT_SEASON);
+    }
+  }
+
+  public List<ClubDto> getClubList(List<Long> clubIdList) {
+    List<Club> clubList = clubRepository.findAllById(clubIdList);
+    List<ClubDto> result = clubList.stream()
+        .map(club -> new ClubDto(club))
+        .collect(Collectors.toList());
+    return result;
+  }
 
 }

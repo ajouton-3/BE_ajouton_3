@@ -5,10 +5,10 @@ import lombok.Builder;
 @Builder
 public record ClubListResponse(
         //TODO:동아리찜유무 추가하기
-        int clubId,
+        Long clubId,
         String clubName,
         String clubCategory,
-        String isRecruit,
+        char isRecruit,
         String logo
 ) {
 }

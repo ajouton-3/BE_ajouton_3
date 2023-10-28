@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Builder
 public record ClubInfoResponse(
-        int clubId,
+        Long clubId,
         String clubCategory,
         String clubName,
         String logo,
@@ -14,7 +14,7 @@ public record ClubInfoResponse(
         String target,
         int fee,
         String contact,
-        String isRecruit,
+        char isRecruit,
         LocalDateTime activityExpired
 ) {
 }

@@ -18,7 +18,8 @@ public class Club extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int clubId;
+    @Column(name = "club_id")
+    private Long clubId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="club_category")
@@ -44,7 +45,9 @@ public class Club extends BaseTimeEntity {
     @Column(name = "activity_expired", nullable = false)
     private LocalDateTime activityExpired;
 
-    private String isRecruit;
+
+    @Column(name = "is_recruit", nullable = false, length = 1)
+    private char isRecruit;
 
 
 
@@ -57,7 +60,7 @@ public class Club extends BaseTimeEntity {
                  final int fee,
                  final String contact,
                  final LocalDateTime activityExpired,
-                 final String isRecruit,
+                 final char isRecruit,
                  final ClubCategory clubCategory) {
 
         this.clubName=clubName;

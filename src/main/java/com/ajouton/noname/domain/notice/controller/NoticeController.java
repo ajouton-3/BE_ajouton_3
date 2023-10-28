@@ -30,7 +30,7 @@ public class NoticeController {
 
     //활동내역 리스트 보내주기
     @GetMapping("/all/{clubId}")
-    public ResponseEntity<List<NoticeListResponse>> showActivityList(@PathVariable int clubId){
+    public ResponseEntity<List<NoticeListResponse>> showActivityList(@PathVariable Long clubId){
 
         Club club = clubService.findById(clubId);
 
