@@ -2,7 +2,9 @@ package com.ajouton.noname.domain.faq.service;
 
 import com.ajouton.noname.domain.activity.dto.ActivityListResponse;
 import com.ajouton.noname.domain.activity.entity.Activity;
+import com.ajouton.noname.domain.boss.faq.dto.PostFaqDto;
 import com.ajouton.noname.domain.club.entity.Club;
+import com.ajouton.noname.domain.club.repository.ClubRepository;
 import com.ajouton.noname.domain.faq.dto.FaqListResponse;
 import com.ajouton.noname.domain.faq.entity.Faq;
 import com.ajouton.noname.domain.faq.repository.FaqRepository;
@@ -20,6 +22,7 @@ import java.util.List;
 @Slf4j
 public class FaqService {
     private final FaqRepository faqRepository;
+    private final ClubRepository clubRepository;
 
     public List<FaqListResponse> showFaqList(Club club){
         List<FaqListResponse> results = new ArrayList<>();
@@ -35,5 +38,14 @@ public class FaqService {
         }
         return results;
 
+    }
+
+    public void postFaq(Long clubId, PostFaqDto postFaqDto) {
+        Club club = clubRepository.findById(clubId).get();
+        Faq faq = Faq.builder()
+            .question(postFaqDto.getQuestion())
+            .answer(postFaqDto.getAnswer())
+            .club(club).build();
+        faqRepository.save(faq);
     }
 }
