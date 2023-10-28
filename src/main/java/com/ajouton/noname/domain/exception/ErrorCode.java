@@ -18,6 +18,7 @@ public enum ErrorCode {
     ALREADY_LIKE(HttpStatus.BAD_REQUEST, 11, "이미 찜한 동아리입니다."),
     LIKE_NOT_EXIST(HttpStatus.BAD_REQUEST, 12, "찜하지 않은 동아리입니다."),
     ACTIVITY_NOT_EXIST(HttpStatus.NOT_FOUND, 13, "존재하지 않는 활동내역입니다."),
+    FAQ_NOT_EXIST(HttpStatus.NOT_FOUND, 14, "존재하지 않는 FAQ입니다."),
     ;
 
     ErrorCode(HttpStatus statusCode,int customCode,String message){

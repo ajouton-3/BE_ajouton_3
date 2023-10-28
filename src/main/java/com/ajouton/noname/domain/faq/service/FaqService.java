@@ -4,9 +4,12 @@ import com.ajouton.noname.domain.activity.dto.ActivityListResponse;
 import com.ajouton.noname.domain.activity.entity.Activity;
 import com.ajouton.noname.domain.boss.activity.dto.ActivityDto;
 import com.ajouton.noname.domain.boss.faq.dto.FaqDto;
+import com.ajouton.noname.domain.boss.faq.dto.PatchFaqDto;
 import com.ajouton.noname.domain.boss.faq.dto.PostFaqDto;
 import com.ajouton.noname.domain.club.entity.Club;
 import com.ajouton.noname.domain.club.repository.ClubRepository;
+import com.ajouton.noname.domain.exception.CustomException;
+import com.ajouton.noname.domain.exception.ErrorCode;
 import com.ajouton.noname.domain.faq.dto.FaqListResponse;
 import com.ajouton.noname.domain.faq.entity.Faq;
 import com.ajouton.noname.domain.faq.repository.FaqRepository;
@@ -59,5 +62,17 @@ public class FaqService {
             .map(faq -> new FaqDto(faq))
             .collect(Collectors.toList());
         return clubFaqResult;
+    }
+
+    public void isValidFaq(int faqId) {
+        if(!faqRepository.existsById(faqId)) {
+            throw new CustomException(ErrorCode.FAQ_NOT_EXIST);
+        }
+    }
+
+    public void patchFaq(int faqId, PatchFaqDto patchFaqDto) {
+        Faq faq = faqRepository.findById(faqId).get();
+        faq.setAnswer(patchFaqDto.getAnswer());
+        faq.setQuestion(patchFaqDto.getQuestion());
     }
 }
