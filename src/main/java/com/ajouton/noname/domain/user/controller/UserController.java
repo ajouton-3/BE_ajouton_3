@@ -55,6 +55,7 @@ public class UserController {
         @PathVariable("userId") Long userId,
         @PathVariable("clubId") Long clubId) {
         userService.isValidUser(userId);
+        clubService.isValidClub(clubId);
         clubService.isRecruitClub(clubId);
         memberService.postMemberApply(userId, clubId);
         return ResponseEntity.status(HttpStatus.CREATED).build();
