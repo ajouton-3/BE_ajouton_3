@@ -1,10 +1,14 @@
 package com.ajouton.noname.domain.user.service;
 
+import com.ajouton.noname.domain.club.dto.ClubDto;
+import com.ajouton.noname.domain.club.entity.Club;
 import com.ajouton.noname.domain.exception.CustomException;
 import com.ajouton.noname.domain.exception.ErrorCode;
 import com.ajouton.noname.domain.user.entity.Member;
 import com.ajouton.noname.domain.user.entity.MemberId;
 import com.ajouton.noname.domain.user.repository.MemberRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -43,6 +47,14 @@ public class MemberService {
     member.setRole("임시회원");
 
     memberRepository.save(member);
+  }
+
+  public List<Long> getUserClubList(Long userId, String role) {
+    List<Member> userMemberList = memberRepository
+        .findByUserIdAndRoleOrderByCreatedAtDesc(userId, role);
+    List<Long> clubIdList = userMemberList.stream().map((club)-> club.getClubId()).collect(
+        Collectors.toList());
+    return clubIdList;
   }
 
 }
