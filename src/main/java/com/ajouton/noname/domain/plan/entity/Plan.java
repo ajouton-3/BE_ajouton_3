@@ -1,5 +1,7 @@
 package com.ajouton.noname.domain.plan.entity;
 
+import com.ajouton.noname.domain.club.entity.Club;
+import com.ajouton.noname.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -11,12 +13,16 @@ import java.time.LocalDateTime;
 @Table(name = "PLANS")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Plan {
+public class Plan extends BaseTimeEntity {
 
     @Id
     @Column(name = "plan_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int planId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="club_id")
+    private Club club;
 
     @Column(length = 100,nullable = false)
     private String content;

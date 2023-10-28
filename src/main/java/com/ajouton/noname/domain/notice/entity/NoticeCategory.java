@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="NOTICE_CATEGORIES")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class NoticeCategory {

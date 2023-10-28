@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "NOTICES")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Notice extends BaseTimeEntity {

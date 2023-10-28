@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="CLUB_CATEGORIES")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class ClubCategory {
