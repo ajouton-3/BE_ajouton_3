@@ -4,6 +4,7 @@ import com.ajouton.noname.domain.activity.dto.ActivityInfoResponse;
 import com.ajouton.noname.domain.activity.dto.ActivityListResponse;
 import com.ajouton.noname.domain.activity.service.ActivityService;
 import com.ajouton.noname.domain.club.entity.Club;
+import com.ajouton.noname.domain.club.service.ClubService;
 import com.ajouton.noname.domain.notice.dto.NoticeInfoResponse;
 import com.ajouton.noname.domain.notice.dto.NoticeListResponse;
 import com.ajouton.noname.domain.notice.service.NoticeService;
@@ -25,13 +26,14 @@ import java.util.List;
 public class NoticeController {
 
     private final NoticeService noticeService;
+    private final ClubService clubService;
 
     //활동내역 리스트 보내주기
     @GetMapping("/{clubId}")
     public ResponseEntity<List<NoticeListResponse>> showActivityList(@PathVariable int clubId){
-        //TODO: clubId로 club을 찾는다
-        //Club club = clubService.find(clubId);
-        Club club = Club.builder().build();
+
+        Club club = clubService.findById(clubId);
+
         List<NoticeListResponse> noticeListResponses = noticeService.showNoticeList(club);
 
         return new ResponseEntity<>(noticeListResponses, HttpStatus.OK);

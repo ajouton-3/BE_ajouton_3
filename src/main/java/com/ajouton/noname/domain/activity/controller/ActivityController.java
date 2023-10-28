@@ -4,6 +4,7 @@ import com.ajouton.noname.domain.activity.dto.ActivityInfoResponse;
 import com.ajouton.noname.domain.activity.dto.ActivityListResponse;
 import com.ajouton.noname.domain.activity.service.ActivityService;
 import com.ajouton.noname.domain.club.entity.Club;
+import com.ajouton.noname.domain.club.service.ClubService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,13 +23,13 @@ import java.util.List;
 public class ActivityController {
 
     private final ActivityService activityService;
+    private final ClubService clubService;
 
     //활동내역 리스트 보내주기
     @GetMapping("/{clubId}")
     public ResponseEntity<List<ActivityListResponse>> showActivityList(@PathVariable int clubId){
-        //TODO: clubId로 club을 찾는다
-        //Club club = clubService.find(clubId);
-        Club club = Club.builder().build();
+
+        Club club = clubService.findById(clubId);
         List<ActivityListResponse> activityListResponses = activityService.showActivityList(club);
 
         return new ResponseEntity<>(activityListResponses, HttpStatus.OK);
