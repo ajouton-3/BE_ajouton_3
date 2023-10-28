@@ -6,6 +6,7 @@ import com.ajouton.noname.domain.club.entity.Club;
 import com.ajouton.noname.domain.club.service.ClubService;
 import com.ajouton.noname.domain.user.dto.SignInDto;
 import com.ajouton.noname.domain.user.dto.SignUpDto;
+import com.ajouton.noname.domain.user.dto.UserClubRoleDto;
 import com.ajouton.noname.domain.user.dto.UserInfoResponseDto;
 import com.ajouton.noname.domain.user.entity.User;
 import com.ajouton.noname.domain.user.dto.CreateUserRequest;
@@ -13,6 +14,7 @@ import com.ajouton.noname.domain.user.service.MemberService;
 import com.ajouton.noname.domain.user.service.UserLikeClubService;
 import com.ajouton.noname.domain.user.service.UserService;
 import java.util.List;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -110,4 +112,18 @@ public class UserController {
         userLikeClubService.deleteUserLikeClub(userId, clubId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+    @GetMapping("/{userId}/clubs/{clubId}/role")
+    public ResponseEntity<UserClubRoleDto> getUserClubRole(
+        @PathVariable("userId") Long userId,
+        @PathVariable("clubId") Long clubId) {
+        userService.isValidUser(userId);
+        clubService.isValidClub(clubId);
+
+        UserClubRoleDto userRoleResult = memberService.getUserClubRole(userId, clubId);
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(userRoleResult);
+    }
+
+
 }

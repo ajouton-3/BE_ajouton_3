@@ -2,6 +2,7 @@ package com.ajouton.noname.domain.user.service;
 
 import com.ajouton.noname.domain.exception.CustomException;
 import com.ajouton.noname.domain.exception.ErrorCode;
+import com.ajouton.noname.domain.user.dto.UserClubRoleDto;
 import com.ajouton.noname.domain.user.entity.Member;
 import com.ajouton.noname.domain.user.repository.MemberRepository;
 import java.util.List;
@@ -52,6 +53,23 @@ public class MemberService {
     List<Long> clubIdList = userMemberList.stream().map((club)-> club.getClubId()).collect(
         Collectors.toList());
     return clubIdList;
+  }
+
+  public UserClubRoleDto getUserClubRole(Long userId, Long clubId) {
+    Member member = memberRepository.findByUserIdAndClubId(userId, clubId).orElse(null);
+    if(member == null) {
+      return UserClubRoleDto.builder()
+          .userId(userId)
+          .clubId(clubId)
+          .role("비회원")
+          .build();
+    } else {
+      return UserClubRoleDto.builder()
+          .userId(member.getUserId())
+          .clubId(member.getClubId())
+          .role(member.getRole())
+          .build();
+    }
   }
 
 }
