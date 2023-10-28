@@ -1,0 +1,28 @@
+#search-bar {
+	justify-content: center;
+}
+
+#search-form-field {
+	min-width: 600px;
+}
+
+#button-search {
+	margin-top: 4px;
+}
+
+#chip-list-box {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#selected-category {
+	margin-left: 12px;
+	opacity: 0.7;
+	font-size: 14px;
+	font-style: italic;
+}
+
+.button {
+	margin-bottom: 4px;
+	cursor: pointer;
+}

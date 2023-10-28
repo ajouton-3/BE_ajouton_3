@@ -1,0 +1,31 @@
+#clubs-title {
+	width: 80%;
+	margin: 80px auto 82px auto;
+	padding-left: 20px;
+	font-size: 28px;
+	font-family: 'ADLaM Display';
+	user-select: none;
+}
+
+#filter {
+	display: flex;
+	position: absolute;
+	top: 256px;
+	right: 210px;
+	padding: 4px 24px 4px 24px;
+	font-size: 18px;
+	font-family: 'ADLaM Display';
+	border: 2px solid black;
+	border-radius: 16px;
+	cursor: pointer;
+	user-select: none;
+}
+
+#clubs {
+	width: 80%;
+	margin: 20px auto 0px auto;
+}
+
+.info-card {
+	margin-bottom: 20px;
+}

@@ -1,0 +1,45 @@
+@import 'src/theme/color';
+
+$header-bottom-height: 60px;
+
+#header-top {
+	height: 120px;
+	background-color: white;
+}
+
+#header-bottom {
+	height: $header-bottom-height;
+	background-color: white;
+}
+
+#logo {
+	flex: 0 1 400px;
+	text-align: center;
+	font-family: 'ADLaM Display';
+	cursor: pointer;
+	user-select: none;
+}
+
+#user-name {
+	flex: 0 1 800px;
+	text-align: right;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#page-menu {
+	display: flex;
+	width: 100%;
+}
+
+.page-title {
+	flex: 1 0;
+	height: $header-bottom-height;
+	line-height: $header-bottom-height;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	transition: 0.2s ease-in-out;
+	cursor: pointer;
+	user-select: none;
+}

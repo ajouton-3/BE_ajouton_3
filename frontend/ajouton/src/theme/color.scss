@@ -1,0 +1,20 @@
+/* Theme modules */
+@import './blue-theme';
+
+/* primary 색상과 배경색을 입히는 함수 */
+@mixin primary($weight) {
+	color: map-get(map-get($primary, contrast), $weight);
+	background-color: map-get($primary, $weight);
+}
+
+/* accent 색상과 배경색을 입히는 함수 */
+@mixin accent($weight) {
+	color: map-get(map-get($accent, contrast), $weight);
+	background-color: map-get($accent, $weight);
+}
+
+/* warn 색상과 배경색을 입히는 함수 */
+@mixin warn($weight) {
+	color: map-get(map-get($warn, contrast), $weight);
+	background-color: map-get($warn, $weight);
+}

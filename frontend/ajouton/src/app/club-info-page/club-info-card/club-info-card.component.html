@@ -1,0 +1,27 @@
+<div id="club-card" class="mat-elevation-z4">
+	<div id="logo">
+		Logo Placeholder
+	</div>
+	<div>
+		<div id="header">
+			<div id="name">
+				{{clubInfo.name}}
+			</div>
+			<mat-icon id="wish-icon"
+				(click)="onClickWishButton()"
+				[style.color]="wishIcon === 'favorite' ? 'red' : 'inherit'">
+				{{wishIcon}}
+			</mat-icon>
+		</div>
+
+		<div id="description">
+			{{clubInfo.description}}
+		</div>
+
+		<div id="category">
+			<div class="category" *ngFor="let category of clubInfo.category">
+				{{category}}
+			</div>
+		</div>
+	</div>
+</div>

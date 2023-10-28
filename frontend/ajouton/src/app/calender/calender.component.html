@@ -1,0 +1,29 @@
+<div id="month-control">
+	<div id="previous-month" class="button-month"
+		(click)="onClickPrevMonth()">
+		<mat-icon mat-ripple class="button-month-icon">keyboard_arrow_left</mat-icon>
+	</div>
+	<div id="current-month">{{currentYear}}년 {{currentMonth}}월</div>
+	<div id="next-month" class="button-month"
+		(click)="onClickNextMonth()">
+		<mat-icon mat-ripple class="button-month-icon">keyboard_arrow_right</mat-icon>
+	</div>
+</div>
+
+<div style="border: 1px solid gray;">
+	<mat-grid-list cols="7" rowHeight="4:1" id="grid-day-list">
+		<mat-grid-tile *ngFor="let day of ['일', '월', '화', '수', '목', '금', '토']" class="grid-day">
+			{{day}}
+		</mat-grid-tile>
+	</mat-grid-list>
+</div>
+
+<div style="border: 1px solid gray; border-top: none;">
+	<mat-grid-list cols="7" rowHeight="100px" id="grid-cell-list">
+		<mat-grid-tile *ngFor="let day of daysInMonth; index as i" class="grid-cell"
+			[style.backgroundColor]="i % 7 === 0 || i % 7 === 6 ? '#E6F2FF' : 'white'">
+			{{(day !== 0) ? day.toString().padStart(2, '0') : ''}}
+			<app-calender-schedule class="schedule"></app-calender-schedule>
+		</mat-grid-tile>
+	</mat-grid-list>
+</div>

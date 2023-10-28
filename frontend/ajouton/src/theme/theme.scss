@@ -1,0 +1,5 @@
+/* Theme modules */
+@import './blue-theme';
+
+/* Angular Material의 모든 컴포넌트에 테마 적용 */
+@include mat.all-component-themes($theme);

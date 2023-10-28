@@ -1,0 +1,15 @@
+<div id="search-bar">
+	<mat-form-field id="search-form-field" appearance="outline">
+		<input matInput placeholder="동아리 검색"
+			(focus)="isFocus = true;"
+			(blur)="isFocus = false;">
+		<mat-icon matSuffix id="button-search" class="button"
+			matTooltip="검색" matTooltipPosition="above"
+			(click)="onClickSearchButton()">search</mat-icon>
+		<mat-icon matSuffix id="button-category" class="button"
+			matTooltip="카테고리" matTooltipPosition="above"
+			(click)="onClickCategoryButton()" style="margin-left: -16px;">category</mat-icon>
+	</mat-form-field>
+
+	<span id="selected-category">{{(firstEnabledChip !== undefined) ? firstEnabledChip : ""}}{{enabledChipCount}}</span>
+</div>

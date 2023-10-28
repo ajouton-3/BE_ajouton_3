@@ -1,0 +1,48 @@
+@import 'src/theme/color';
+
+#month-control {
+	display: flex;
+	margin-bottom: 32px;
+	justify-content: center;
+	user-select: none;
+}
+
+#current-month {
+	font-size: 20px;
+	line-height: 24px;
+	user-select: none;
+}
+
+#grid-day-list {
+	align-items: start;
+	user-select: none;
+}
+
+.button-month {
+	margin: 0px 4px 0px 4px;
+}
+
+.button-month-icon {
+	border-radius: 50%;
+}
+
+.grid-day {
+	text-align: center;
+	background-color: map-get($primary, 100);
+	user-select: none;
+}
+
+.grid-cell ::ng-deep.mat-grid-tile-content {
+	margin: 8px 0px 0px 8px;
+	align-items: start;
+	justify-content: start;
+	user-select: none;
+}
+
+.schedule {
+	position: absolute;
+	left: -8px;
+	bottom: 60px;
+	width: 100%;
+	height: 20px;
+}

@@ -1,0 +1,14 @@
+<div id="clubs-title">My Clubs</div>
+
+<div id="filter"
+	(click)="onClickFilterButton()">
+	<div>Filter</div>
+	<mat-icon>filter_alt</mat-icon>
+</div>
+
+<div id="clubs">
+	<app-club-info-card *ngFor="let club of clubs"
+		[clubInfo]="club"></app-club-info-card>
+</div>
+
+<div style="height: 100px;"></div>

@@ -1,0 +1,41 @@
+/* Angular modules */
+@use '@angular/material' as mat;
+
+/* 팔레트와 테마 생성 */
+$font-family: 'Nanum Gothic Coding';
+$dark-text: rgba(#000000, 0.87);
+$light-text: rgba(#ffffff, 1.0);
+
+$palette: (
+	50 : #FFFFFF,
+	100: #E6F2FF,
+	200: #CCE5FF,
+	300: #B3D9FF,
+	400: #99CCFF,
+	500: #80BFFF,
+	600: #66B3FF,
+	700: #4DA6FF,
+	800: #3399FF,
+	900: #1A8CFF,
+	contrast: (
+		50 : $dark-text,
+		100: $dark-text,
+		200: $dark-text,
+		300: $dark-text,
+		400: $dark-text,
+		500: $light-text,
+		600: $light-text,
+		700: $light-text,
+		800: $light-text,
+		900: $light-text,
+	)
+);
+
+$primary: mat.define-palette($palette, 700);
+$accent: mat.define-palette($palette, 700);
+$warn: mat.define-palette(mat.$red-palette, 700);
+$typography: mat.define-typography-config($font-family);
+$theme: mat.define-light-theme((
+	color: (primary: $primary, accent: $accent, warn: $warn),
+	typography: $typography,
+));

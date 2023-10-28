@@ -1,0 +1,5 @@
+/* 하단 정렬용 빈 영역 높이 제거 */
+::ng-deep.mat-mdc-form-field-bottom-align {
+	/* 기본 22px */
+	height: 0px !important;
+}

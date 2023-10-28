@@ -1,0 +1,14 @@
+<div style="display: flex; justify-content: space-between;">
+	<h3>동아리 카테고리 선택</h3>
+	<button mat-stroked-button id="button-reset" class="mat-elevation-z2"
+		(click)="onClickResetButton()">
+		초기화
+	</button>
+</div>
+<mat-chip-listbox id="chip-listbox" multiple>
+	<mat-chip-option *ngFor="let chip of chips"
+		[selected]="data.isEnableChips[chips.indexOf(chip)]"
+		(click)="onChangeChips(chips.indexOf(chip))">
+		{{chip}}
+	</mat-chip-option>
+</mat-chip-listbox>

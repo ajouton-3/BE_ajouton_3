@@ -1,0 +1,38 @@
+<div class="mat-elevation-z4">
+	<mat-toolbar id="header-top">
+		<div id="logo"
+			(click)="onClickLogo()">
+			AJOUTON LOGO<br />
+			PLACEHOLDER
+		</div>
+
+		<app-search-bar id="search-bar"
+			(_searchEventEmitter)="onSearch()"></app-search-bar>
+
+		<div id="user-name">
+			{{profile.userName}}님
+		</div>
+	</mat-toolbar>
+
+	<mat-divider></mat-divider>
+
+	<div id="header-bottom">
+		<div id="page-menu">
+			<div mat-ripple id="club-info" class="page-title"
+				[@colorChangeAnim]="isSelectPage[pageType.ClubInfo]"
+				(click)="onClickPage(pageType.ClubInfo)">동아리 정보</div>
+			<div style="width: 1px; height: 60px; background-color: rgba(100, 100, 100, 0.2)"></div>
+			<div mat-ripple id="announcement" class="page-title"
+				[@colorChangeAnim]="isSelectPage[pageType.Announcement]"
+				(click)="onClickPage(pageType.Announcement)">공지사항</div>
+			<div style="width: 1px; height: 60px; background-color: rgba(100, 100, 100, 0.2)"></div>
+			<div mat-ripple id="activity" class="page-title"
+				[@colorChangeAnim]="isSelectPage[pageType.Activity]"
+				(click)="onClickPage(pageType.Activity)">활동 내역</div>
+			<div style="width: 1px; height: 60px; background-color: rgba(100, 100, 100, 0.2)"></div>
+			<div mat-ripple id="profile" class="page-title"
+				[@colorChangeAnim]="isSelectPage[pageType.Profile]"
+				(click)="onClickPage(pageType.Profile)">마이 페이지</div>
+		</div>
+	</div>
+</div>

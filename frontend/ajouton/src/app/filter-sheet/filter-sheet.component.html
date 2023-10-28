@@ -1,0 +1,26 @@
+<div style="display: flex; justify-content: space-between;">
+	<h3>정렬 순서 카테고리 선택</h3>
+	<button mat-stroked-button id="button-reset" class="mat-elevation-z2"
+		(click)="onClickResetButton()">
+		초기화
+	</button>
+</div>
+<div id="radio">
+	<mat-radio-group id="radio-group" [(ngModel)]="this.data.orderType" (ngModelChange)="onChangeOrderType()">
+		<mat-radio-button id="radio-dictionary" class="radio-button"
+			[value]="orderType.Dictionary">
+			사전순
+		</mat-radio-button>
+		<mat-radio-button id="radio-wish" class="radio-button"
+			[value]="orderType.Wish">
+			찜 우선
+		</mat-radio-button>
+	</mat-radio-group>
+</div>
+<mat-chip-listbox id="chip-listbox" multiple>
+	<mat-chip-option *ngFor="let chip of chips"
+		[selected]="data.isEnableChips[chips.indexOf(chip)]"
+		(click)="onChangeChips(chips.indexOf(chip))">
+		{{chip}}
+	</mat-chip-option>
+</mat-chip-listbox>
