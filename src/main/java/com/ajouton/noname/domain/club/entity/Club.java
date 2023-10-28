@@ -45,8 +45,10 @@ public class Club extends BaseTimeEntity {
     @Column(name = "activity_expired", nullable = false)
     private LocalDateTime activityExpired;
 
+
     @Column(name = "is_recruit", nullable = false, length = 1)
     private char isRecruit;
+
 
 
 
