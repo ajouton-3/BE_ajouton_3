@@ -4,7 +4,9 @@ import lombok.Builder;
 
 @Builder
 public record CreateMemberRequest (
-        String username,
-        String password
+        String name,
+        String phoneNum,
+        String studentId,
+        String department
 ){
 }

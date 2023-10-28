@@ -1,10 +1,7 @@
 package com.ajouton.noname.domain.member.entity;
 
 import com.ajouton.noname.global.entity.BaseTimeEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,12 +16,27 @@ public class Member extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
-    private String password;
+    @Column(name="name",nullable = false)
+    private String name;
+
+    @Column(name="phone_num",nullable = false)
+    private String phoneNum;
+
+    @Column(name="stuend_id",nullable = false)
+    private String studentId;
+
+    @Column(name="department",nullable = false)
+    private String department;
+
 
     @Builder
-    private Member(final String username,final String password){
-        this.username = username;
-        this.password = password;
+    private Member(final String name,
+                   final String phoneNum,
+                   final String studentId,
+                   final String department){
+        this.name=name;
+        this.phoneNum=phoneNum;
+        this.studentId=studentId;
+        this.department = department;
     }
 }

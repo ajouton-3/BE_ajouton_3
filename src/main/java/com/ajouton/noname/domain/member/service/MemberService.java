@@ -21,8 +21,10 @@ public class MemberService {
     public void join(final CreateMemberRequest createMemberRequest){
 
         Member createdMember = Member.builder()
-                .password(createMemberRequest.password())
-                .username(createMemberRequest.username())
+                .name(createMemberRequest.name())
+                .studentId(createMemberRequest.studentId())
+                .department(createMemberRequest.department())
+                .phoneNum(createMemberRequest.phoneNum())
                 .build();
 
         memberRepository.save(createdMember);
