@@ -3,16 +3,16 @@ package com.ajouton.noname.domain.plan.entity;
 import com.ajouton.noname.domain.club.entity.Club;
 import com.ajouton.noname.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "PLANS")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Plan extends BaseTimeEntity {
 
     @Id

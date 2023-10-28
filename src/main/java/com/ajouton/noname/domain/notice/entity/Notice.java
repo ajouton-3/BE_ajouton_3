@@ -33,6 +33,21 @@ public class Notice extends BaseTimeEntity {
 
     private String image;
 
+    @Builder
+    private Notice(
+            Club club,
+            NoticeCategory noticeCategory,
+            String title,
+            String content,
+            String image
+    ){
+        this.club=club;
+        this.noticeCategory=noticeCategory;
+        this.title=title;
+        this.content=content;
+        this.image = image;
+    }
+
 
 
 }

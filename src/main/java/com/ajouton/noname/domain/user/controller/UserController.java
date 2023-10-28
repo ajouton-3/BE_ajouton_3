@@ -4,11 +4,8 @@ package com.ajouton.noname.domain.user.controller;
 import com.ajouton.noname.domain.club.dto.ClubDto;
 import com.ajouton.noname.domain.club.entity.Club;
 import com.ajouton.noname.domain.club.service.ClubService;
-import com.ajouton.noname.domain.user.dto.SignInDto;
-import com.ajouton.noname.domain.user.dto.SignUpDto;
-import com.ajouton.noname.domain.user.dto.UserInfoResponseDto;
+import com.ajouton.noname.domain.user.dto.*;
 import com.ajouton.noname.domain.user.entity.User;
-import com.ajouton.noname.domain.user.dto.CreateUserRequest;
 import com.ajouton.noname.domain.user.service.MemberService;
 import com.ajouton.noname.domain.user.service.UserLikeClubService;
 import com.ajouton.noname.domain.user.service.UserService;
@@ -38,9 +35,10 @@ public class UserController {
     }
 
     @PostMapping("/sign-in")
-    public ResponseEntity signIn(@RequestBody SignInDto signInDto) {
-        userService.signIn(signInDto);
-        return ResponseEntity.status(HttpStatus.OK).build();
+    public ResponseEntity<SignInResponse> signIn(@RequestBody SignInDto signInDto) {
+        SignInResponse signInResponse = userService.signIn(signInDto);
+        return new ResponseEntity<>(signInResponse, HttpStatus.OK);
+
     }
 
     @GetMapping("/{userId}/info")
