@@ -75,4 +75,9 @@ public class FaqService {
         faq.setAnswer(patchFaqDto.getAnswer());
         faq.setQuestion(patchFaqDto.getQuestion());
     }
+
+    public void deleteFaq(int faqId) {
+        Faq faq = faqRepository.findById(faqId).get();
+        faqRepository.delete(faq);
+    }
 }
