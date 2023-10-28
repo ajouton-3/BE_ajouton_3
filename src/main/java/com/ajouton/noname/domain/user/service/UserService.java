@@ -1,5 +1,6 @@
 package com.ajouton.noname.domain.user.service;
 
+import com.ajouton.noname.domain.club.repository.ClubRepository;
 import com.ajouton.noname.domain.exception.CustomException;
 import com.ajouton.noname.domain.exception.ErrorCode;
 import com.ajouton.noname.domain.user.dto.SignInDto;
