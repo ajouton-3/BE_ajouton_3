@@ -4,6 +4,7 @@ import com.ajouton.noname.domain.exception.CustomException;
 import com.ajouton.noname.domain.exception.ErrorCode;
 import com.ajouton.noname.domain.user.dto.SignInDto;
 import com.ajouton.noname.domain.user.dto.SignUpDto;
+import com.ajouton.noname.domain.user.dto.UserInfoResponseDto;
 import com.ajouton.noname.domain.user.entity.User;
 import com.ajouton.noname.domain.user.dto.CreateUserRequest;
 import com.ajouton.noname.domain.user.repository.UserRepository;
@@ -19,6 +20,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    // 존재하는 사용자인지 확인
+    public void isValidUser(Long userId) {
+        if(!userRepository.existsById(userId)) {
+            throw new CustomException(ErrorCode.USER_NOT_EXIST);
+        }
+    }
 
     public void signUp(SignUpDto signUpDto) {
         if(userRepository.existsByStudentId(signUpDto.getStudentId())) {
@@ -41,5 +49,10 @@ public class UserService {
         if(!user.getPassword().equals(signInDto.getPassword())) {
             throw new CustomException(ErrorCode.SIGN_IN_FAILED);
         }
+    }
+
+    public UserInfoResponseDto getUserInfo(Long userId) {
+        User user = userRepository.findById(userId).get();
+        return new UserInfoResponseDto(user);
     }
 }
