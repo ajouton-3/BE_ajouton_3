@@ -2,6 +2,7 @@ package com.ajouton.noname.domain.activity.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,8 @@ public class ActivityCategory {
     private String activityCategory;
 
 
-
-
+    @Builder
+    private ActivityCategory(String activityCategory){
+        this.activityCategory = activityCategory;
+    }
 }
