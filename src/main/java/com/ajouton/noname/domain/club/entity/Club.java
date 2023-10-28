@@ -19,7 +19,7 @@ public class Club extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "club_id")
-    private int clubId;
+    private Long clubId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="club_category")

@@ -1,6 +1,8 @@
 package com.ajouton.noname.domain.user.controller;
 
 
+import com.ajouton.noname.domain.club.dto.ClubDto;
+import com.ajouton.noname.domain.club.entity.Club;
 import com.ajouton.noname.domain.club.service.ClubService;
 import com.ajouton.noname.domain.user.dto.SignInDto;
 import com.ajouton.noname.domain.user.dto.SignUpDto;
@@ -9,6 +11,7 @@ import com.ajouton.noname.domain.user.entity.User;
 import com.ajouton.noname.domain.user.dto.CreateUserRequest;
 import com.ajouton.noname.domain.user.service.MemberService;
 import com.ajouton.noname.domain.user.service.UserService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -53,5 +56,15 @@ public class UserController {
         clubService.isRecruitClub(clubId);
         memberService.postMemberApply(userId, clubId);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/{userId}/clubs")
+    public ResponseEntity<List<ClubDto>> getUserClubList(@PathVariable("userId") Long userId) {
+        userService.isValidUser(userId);
+        List<Long> memberClubList = memberService.getUserClubMemberList(userId);
+
+        List<ClubDto> clubList = clubService.getClubList(memberClubList);
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(clubList);
     }
 }
