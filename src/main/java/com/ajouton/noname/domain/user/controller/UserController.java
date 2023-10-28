@@ -10,6 +10,7 @@ import com.ajouton.noname.domain.user.dto.UserInfoResponseDto;
 import com.ajouton.noname.domain.user.entity.User;
 import com.ajouton.noname.domain.user.dto.CreateUserRequest;
 import com.ajouton.noname.domain.user.service.MemberService;
+import com.ajouton.noname.domain.user.service.UserLikeClubService;
 import com.ajouton.noname.domain.user.service.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class UserController {
     private final ClubService clubService;
 
     private final MemberService memberService;
+    private final UserLikeClubService userLikeClubService;
 
     @PostMapping("/sign-up")
     public ResponseEntity signUp(@RequestBody SignUpDto signUpDto) {
@@ -72,6 +74,15 @@ public class UserController {
     public ResponseEntity<List<ClubDto>> getUserClubApplyList(@PathVariable("userId") Long userId) {
         userService.isValidUser(userId);
         List<Long> clubApplyList = memberService.getUserClubList(userId, "임시회원");
+
+        List<ClubDto> clubList = clubService.getClubList(clubApplyList);
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(clubList);
+    }
+    @GetMapping("/{userId}/clubs/like")
+    public ResponseEntity<List<ClubDto>> getUserLikeClubList(@PathVariable("userId") Long userId) {
+        userService.isValidUser(userId);
+        List<Long> clubApplyList = userLikeClubService.getUserLikeClubList(userId);
 
         List<ClubDto> clubList = clubService.getClubList(clubApplyList);
         return ResponseEntity.status(HttpStatus.OK)

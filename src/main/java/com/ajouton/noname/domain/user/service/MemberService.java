@@ -1,11 +1,8 @@
 package com.ajouton.noname.domain.user.service;
 
-import com.ajouton.noname.domain.club.dto.ClubDto;
-import com.ajouton.noname.domain.club.entity.Club;
 import com.ajouton.noname.domain.exception.CustomException;
 import com.ajouton.noname.domain.exception.ErrorCode;
 import com.ajouton.noname.domain.user.entity.Member;
-import com.ajouton.noname.domain.user.entity.MemberId;
 import com.ajouton.noname.domain.user.repository.MemberRepository;
 import java.util.List;
 import java.util.stream.Collectors;
