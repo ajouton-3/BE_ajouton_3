@@ -10,6 +10,7 @@ import com.ajouton.noname.domain.user.dto.UserInfoResponseDto;
 import com.ajouton.noname.domain.user.entity.User;
 import com.ajouton.noname.domain.user.dto.CreateUserRequest;
 import com.ajouton.noname.domain.user.service.MemberService;
+import com.ajouton.noname.domain.user.service.UserLikeClubService;
 import com.ajouton.noname.domain.user.service.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class UserController {
     private final ClubService clubService;
 
     private final MemberService memberService;
+    private final UserLikeClubService userLikeClubService;
 
     @PostMapping("/sign-up")
     public ResponseEntity signUp(@RequestBody SignUpDto signUpDto) {
@@ -76,5 +78,36 @@ public class UserController {
         List<ClubDto> clubList = clubService.getClubList(clubApplyList);
         return ResponseEntity.status(HttpStatus.OK)
             .body(clubList);
+    }
+    @GetMapping("/{userId}/clubs/like")
+    public ResponseEntity<List<ClubDto>> getUserLikeClubList(@PathVariable("userId") Long userId) {
+        userService.isValidUser(userId);
+        List<Long> clubApplyList = userLikeClubService.getUserLikeClubList(userId);
+
+        List<ClubDto> clubList = clubService.getClubList(clubApplyList);
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(clubList);
+    }
+
+    @PostMapping("/{userId}/clubs/{clubId}/like")
+    public ResponseEntity postUserLikeClub(
+        @PathVariable("userId") Long userId,
+        @PathVariable("clubId") Long clubId) {
+        userService.isValidUser(userId);
+        clubService.isValidClub(clubId);
+
+        userLikeClubService.postUserLikeClub(userId, clubId);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/{userId}/clubs/{clubId}/dislike")
+    public ResponseEntity deleteUserLikeClub(
+        @PathVariable("userId") Long userId,
+        @PathVariable("clubId") Long clubId) {
+        userService.isValidUser(userId);
+        clubService.isValidClub(clubId);
+
+        userLikeClubService.deleteUserLikeClub(userId, clubId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

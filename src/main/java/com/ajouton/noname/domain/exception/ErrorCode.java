@@ -15,6 +15,8 @@ public enum ErrorCode {
     APPLY_EXIST(HttpStatus.BAD_REQUEST, 8, "이미 신청한 동아리입니다."),
     ALREADY_MEMBER(HttpStatus.BAD_REQUEST, 9, "이미 가입한 동아리입니다."),
     NOT_RECRUIT_SEASON(HttpStatus.BAD_REQUEST, 10, "동아리 신청기간이 아닙니다."),
+    ALREADY_LIKE(HttpStatus.BAD_REQUEST, 11, "이미 찜한 동아리입니다."),
+    LIKE_NOT_EXIST(HttpStatus.BAD_REQUEST, 12, "찜하지 않은 동아리입니다."),
     ;
 
     ErrorCode(HttpStatus statusCode,int customCode,String message){
