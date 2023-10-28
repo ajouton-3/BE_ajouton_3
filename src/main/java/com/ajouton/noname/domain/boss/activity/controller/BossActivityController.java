@@ -1,11 +1,13 @@
 package com.ajouton.noname.domain.boss.activity.controller;
 
+import com.ajouton.noname.domain.activity.entity.Activity;
 import com.ajouton.noname.domain.activity.service.ActivityService;
 import com.ajouton.noname.domain.boss.activity.dto.ActivityDto;
 import com.ajouton.noname.domain.boss.activity.dto.PatchActivityDto;
 import com.ajouton.noname.domain.boss.activity.dto.PostActivityDto;
 import com.ajouton.noname.domain.club.service.ClubService;
 import com.ajouton.noname.domain.s3.AmazonS3Service;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -56,8 +58,10 @@ public class BossActivityController {
       @RequestPart("image") MultipartFile image,
       @PathVariable("activityId") int activityId,
       @RequestPart("patchActivity") PatchActivityDto patchActivityDto) {
-
-    activityService.patchActivity(activityId, patchActivityDto);
+    Activity deleteActive = activityService.getActive(activityId);
+    amazonS3Service.deleteImage(deleteActive.getImage());
+    String imageUris = amazonS3Service.uploadFile(image);
+    activityService.patchActivity(activityId, patchActivityDto, imageUris);
     return ResponseEntity.status(HttpStatus.OK).build();
   }
 

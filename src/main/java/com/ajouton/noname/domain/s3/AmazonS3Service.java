@@ -82,7 +82,7 @@ public class AmazonS3Service {
         }
     }
 
-    private void deleteImage(String imgUrl){
+    public void deleteImage(String imgUrl){
         String imgKey = extractS3KeyFromImgUrl(imgUrl);
         amazonS3Client.deleteObject(bucket, imgKey);
     }

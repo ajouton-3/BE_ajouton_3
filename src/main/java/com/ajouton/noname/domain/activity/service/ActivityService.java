@@ -12,6 +12,7 @@ import com.ajouton.noname.domain.club.entity.Club;
 import com.ajouton.noname.domain.club.service.ClubService;
 import com.ajouton.noname.domain.exception.CustomException;
 import com.ajouton.noname.domain.exception.ErrorCode;
+import com.ajouton.noname.domain.s3.AmazonS3Service;
 import java.net.URI;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @Transactional
@@ -30,6 +32,7 @@ public class ActivityService {
 
     private final ActivityRepository activityRepository;
     private final ClubService clubService;
+
 
     public List<ActivityListResponse> showActivityList(Club club){
         List<ActivityListResponse> results = new ArrayList<>();
@@ -78,18 +81,23 @@ public class ActivityService {
         return result;
     }
 
+    public Activity getActive(int activityId) {
+        return activityRepository.findById(activityId)
+            .orElseThrow(()-> new CustomException(ErrorCode.ACTIVITY_NOT_EXIST));
+    }
+
     public void isValidActivity(int activityId) {
         if(!activityRepository.existsById(activityId)) {
             throw new CustomException(ErrorCode.ACTIVITY_NOT_EXIST);
         }
     }
 
-    public void patchActivity(int activityId, PatchActivityDto patchActivityDto) {
+    public void patchActivity(int activityId, PatchActivityDto patchActivityDto, String imageUri) {
         Activity activity = activityRepository.findById(activityId)
             .orElseThrow(()-> new CustomException(ErrorCode.ACTIVITY_NOT_EXIST));
 
         activity.setContent(patchActivityDto.getContent());
-        activity.setImage("/updateUrl");
+        activity.setImage(imageUri);
     }
 
     public void deleteActivity(int activityId) {
