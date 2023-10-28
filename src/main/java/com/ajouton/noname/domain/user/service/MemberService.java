@@ -49,9 +49,9 @@ public class MemberService {
     memberRepository.save(member);
   }
 
-  public List<Long> getUserClubMemberList(Long userId) {
+  public List<Long> getUserClubList(Long userId, String role) {
     List<Member> userMemberList = memberRepository
-        .findByUserIdAndRoleOrderByCreatedAtDesc(userId, "회원");
+        .findByUserIdAndRoleOrderByCreatedAtDesc(userId, role);
     List<Long> clubIdList = userMemberList.stream().map((club)-> club.getClubId()).collect(
         Collectors.toList());
     return clubIdList;

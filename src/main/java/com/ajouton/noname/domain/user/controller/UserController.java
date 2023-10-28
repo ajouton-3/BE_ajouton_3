@@ -61,9 +61,19 @@ public class UserController {
     @GetMapping("/{userId}/clubs")
     public ResponseEntity<List<ClubDto>> getUserClubList(@PathVariable("userId") Long userId) {
         userService.isValidUser(userId);
-        List<Long> memberClubList = memberService.getUserClubMemberList(userId);
+        List<Long> memberClubList = memberService.getUserClubList(userId, "회원");
 
         List<ClubDto> clubList = clubService.getClubList(memberClubList);
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(clubList);
+    }
+
+    @GetMapping("/{userId}/clubs/apply")
+    public ResponseEntity<List<ClubDto>> getUserClubApplyList(@PathVariable("userId") Long userId) {
+        userService.isValidUser(userId);
+        List<Long> clubApplyList = memberService.getUserClubList(userId, "임시회원");
+
+        List<ClubDto> clubList = clubService.getClubList(clubApplyList);
         return ResponseEntity.status(HttpStatus.OK)
             .body(clubList);
     }
