@@ -17,6 +17,7 @@ public enum ErrorCode {
     NOT_RECRUIT_SEASON(HttpStatus.BAD_REQUEST, 10, "동아리 신청기간이 아닙니다."),
     ALREADY_LIKE(HttpStatus.BAD_REQUEST, 11, "이미 찜한 동아리입니다."),
     LIKE_NOT_EXIST(HttpStatus.BAD_REQUEST, 12, "찜하지 않은 동아리입니다."),
+    ACTIVITY_NOT_EXIST(HttpStatus.NOT_FOUND, 13, "존재하지 않는 활동내역입니다."),
     ;
 
     ErrorCode(HttpStatus statusCode,int customCode,String message){

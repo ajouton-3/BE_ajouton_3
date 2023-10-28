@@ -7,10 +7,13 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
+@Table(name = "activities")
 public class Activity extends BaseTimeEntity {
 
     @Id
@@ -20,10 +23,6 @@ public class Activity extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="club_id")
     private Club club;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="activity_category")
-    private ActivityCategory activityCategory;
 
     @Column(name="image",nullable = false)
     private String image;

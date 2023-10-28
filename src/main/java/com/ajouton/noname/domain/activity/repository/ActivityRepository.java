@@ -12,3 +12,4 @@ public interface ActivityRepository extends JpaRepository<Activity,Integer> {
 
     List<Activity> findAllByClub(Club club);
 }
+

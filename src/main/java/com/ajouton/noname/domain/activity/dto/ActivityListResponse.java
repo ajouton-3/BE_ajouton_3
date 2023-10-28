@@ -1,6 +1,5 @@
 package com.ajouton.noname.domain.activity.dto;
 
-import com.ajouton.noname.domain.activity.entity.ActivityCategory;
 import lombok.Builder;
 
 @Builder

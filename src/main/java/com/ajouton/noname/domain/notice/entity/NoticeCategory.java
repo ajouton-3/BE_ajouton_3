@@ -1,7 +1,6 @@
 package com.ajouton.noname.domain.notice.entity;
 
 
-import com.ajouton.noname.domain.activity.entity.ActivityCategory;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -1,6 +1,5 @@
 package com.ajouton.noname.domain.club.entity;
 
-import com.ajouton.noname.domain.activity.entity.ActivityCategory;
 import com.ajouton.noname.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
