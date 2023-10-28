@@ -22,7 +22,7 @@ public class Member extends BaseTimeEntity {
     @Column(name="phone_num",nullable = false)
     private String phoneNum;
 
-    @Column(name="stuend_id",nullable = false)
+    @Column(name="student_id",nullable = false)
     private String studentId;
 
     @Column(name="department",nullable = false)

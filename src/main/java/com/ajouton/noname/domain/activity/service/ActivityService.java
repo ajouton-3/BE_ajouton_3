@@ -47,6 +47,7 @@ public class ActivityService {
                 .createdAt(activity.getCreatedAt())
                 .content(activity.getContent())
                 .updateAt(activity.getUpdatedAt())
+                .image(activity.getImage())
                 .build();
 
         return result;

@@ -29,7 +29,7 @@ public class ClubController {
 
     //동아리 목록 가져오기, 검색어 있든 없든
     @GetMapping
-    public ResponseEntity<List<ClubListResponse>> showAllClub(@RequestParam String name){
+    public ResponseEntity<List<ClubListResponse>> showAllClub(@RequestParam(required = false) String name) {
         List<ClubListResponse> clubListResponseList = clubService.showAllClub(name);
 
         return ResponseEntity.ok(clubListResponseList);

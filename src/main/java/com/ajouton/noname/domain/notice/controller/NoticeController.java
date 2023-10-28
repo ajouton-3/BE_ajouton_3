@@ -29,7 +29,7 @@ public class NoticeController {
     private final ClubService clubService;
 
     //활동내역 리스트 보내주기
-    @GetMapping("/{clubId}")
+    @GetMapping("/all/{clubId}")
     public ResponseEntity<List<NoticeListResponse>> showActivityList(@PathVariable int clubId){
 
         Club club = clubService.findById(clubId);

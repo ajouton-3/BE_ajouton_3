@@ -83,6 +83,7 @@ public class ClubService {
 
 
     public Club findById(int clubId){
+        log.info("serve");
         Club club = clubRepository.findById(clubId).orElseThrow(() -> new CustomException(ErrorCode.ERROR_1));
         return club;
     }

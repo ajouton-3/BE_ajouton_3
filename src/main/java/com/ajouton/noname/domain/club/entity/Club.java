@@ -46,7 +46,6 @@ public class Club extends BaseTimeEntity {
 
     private String isRecruit;
 
-    private LocalDateTime foundationDate;
 
 
 
@@ -59,8 +58,7 @@ public class Club extends BaseTimeEntity {
                  final String contact,
                  final LocalDateTime activityExpired,
                  final String isRecruit,
-                 final ClubCategory clubCategory,
-                 LocalDateTime foundationDate) {
+                 final ClubCategory clubCategory) {
 
         this.clubName=clubName;
         this.logo=logo;
@@ -71,7 +69,6 @@ public class Club extends BaseTimeEntity {
         this.activityExpired=activityExpired;
         this.isRecruit=isRecruit;
         this.clubCategory = clubCategory;
-        this.foundationDate = foundationDate;
 
     }
 }

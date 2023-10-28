@@ -25,11 +25,16 @@ public class ActivityController {
     private final ActivityService activityService;
     private final ClubService clubService;
 
+    @GetMapping("/test")
+    public ResponseEntity<String> test(){
+        return new ResponseEntity<>("ok", HttpStatus.OK);
+    }
     //활동내역 리스트 보내주기
-    @GetMapping("/{clubId}")
-    public ResponseEntity<List<ActivityListResponse>> showActivityList(@PathVariable int clubId){
-
-        Club club = clubService.findById(clubId);
+    @GetMapping("/all/{clubId}")
+    public ResponseEntity<List<ActivityListResponse>> showActivityList(@PathVariable String clubId){
+        log.info("1");
+        Club club = clubService.findById(Integer.parseInt(clubId));
+        log.info("2");
         List<ActivityListResponse> activityListResponses = activityService.showActivityList(club);
 
         return new ResponseEntity<>(activityListResponses, HttpStatus.OK);

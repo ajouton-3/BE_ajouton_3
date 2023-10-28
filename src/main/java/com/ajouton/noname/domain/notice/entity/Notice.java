@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Notice extends BaseTimeEntity {
     @Id
-    @Column(name = "node_id")
+    @Column(name = "notice_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int noteId;
 
