@@ -45,7 +45,8 @@ public class Club extends BaseTimeEntity {
     @Column(name = "activity_expired", nullable = false)
     private LocalDateTime activityExpired;
 
-    private boolean isRecruit;
+    @Column(name = "is_recruit", nullable = false, length = 1)
+    private char isRecruit;
 
 
 
@@ -57,7 +58,7 @@ public class Club extends BaseTimeEntity {
                  final int fee,
                  final String contact,
                  final LocalDateTime activityExpired,
-                 final boolean isRecruit,
+                 final char isRecruit,
                  final ClubCategory clubCategory) {
 
         this.clubName=clubName;
