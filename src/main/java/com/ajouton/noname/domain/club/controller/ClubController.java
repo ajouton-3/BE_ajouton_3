@@ -37,7 +37,7 @@ public class ClubController {
 
     //동아리 상세정보 조회
     @GetMapping("/{clubId}")
-    public ResponseEntity<ClubInfoResponse> showClubInfo(@PathVariable int clubId){
+    public ResponseEntity<ClubInfoResponse> showClubInfo(@PathVariable Long clubId){
         ClubInfoResponse clubInfoResponse = clubService.showClubInfo(clubId);
 
         return new ResponseEntity<>(clubInfoResponse, HttpStatus.OK);

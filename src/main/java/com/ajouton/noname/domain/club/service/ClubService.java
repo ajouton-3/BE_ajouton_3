@@ -55,7 +55,7 @@ public class ClubService {
 
     }
 
-    public ClubInfoResponse showClubInfo(int clubId){
+    public ClubInfoResponse showClubInfo(Long clubId){
         Club club = findById(clubId);
         ClubInfoResponse clubInfoResponse = ClubInfoResponse.builder()
                 .clubId(club.getClubId())
