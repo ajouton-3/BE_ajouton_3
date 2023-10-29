@@ -41,9 +41,13 @@ public class UserLikeClubService {
     if(!userLikeClubRepository.existsByUserIdAndClubId(userId, clubId)) {
       throw new CustomException(ErrorCode.LIKE_NOT_EXIST);
     }
-    UserLikeClub userLikeClub = new UserLikeClub();
-    userLikeClub.setClubId(clubId);
-    userLikeClub.setUserId(userId);
-    userLikeClubRepository.delete(userLikeClub);
+
+    UserLikeClub byUserIdAndClubId = userLikeClubRepository.findByUserIdAndClubId(userId, clubId);
+    userLikeClubRepository.delete(byUserIdAndClubId);
+
+//    UserLikeClub userLikeClub = new UserLikeClub();
+//    userLikeClub.setClubId(clubId);
+//    userLikeClub.setUserId(userId);
+//    userLikeClubRepository.delete(userLikeClub);
   }
 }

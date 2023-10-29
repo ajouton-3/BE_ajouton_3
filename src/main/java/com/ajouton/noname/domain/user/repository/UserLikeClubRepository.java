@@ -13,4 +13,5 @@ public interface UserLikeClubRepository extends JpaRepository<UserLikeClub, Like
 
   boolean existsByUserIdAndClubId(Long userId, Long clubId);
 
+  UserLikeClub findByUserIdAndClubId(Long userId, Long clubId);
 }
