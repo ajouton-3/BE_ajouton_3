@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://gollajo-testdb.cgrh78ev6hez.ap-northeast-2.rds.amazonaws.com:3306/ajouton?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: dkwneo19!
+    url: 
+    username: 
+    password: 
     dbcp:
       testOnBorrow: true
       validationQuery: SELECT 1
@@ -17,10 +17,10 @@ spring:
 cloud:
   aws:
     s3:
-      bucket: ajouton3
+      bucket: 
     credentials:
-      access-key: AKIA6EN5HXX5YH5RZLFH
-      secret-key: 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
+      access-key: 
+      secret-key: E
     region:
       static: ap-northeast-2
       auto: false
